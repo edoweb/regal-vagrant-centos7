@@ -1,0 +1,3 @@
+Here will be soon...
+
+... a running vagrant box with regal on centos 7..
