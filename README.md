@@ -10,6 +10,7 @@ Newest version of vagrant installed. Newest version of virtualbox installed.
 ## Install
 
 ```
+mkdir ~/regal-dev
 git clone https://github.com/edoweb/regal-vagrant-centos7
 cd regal-vagrant-centos7
 ```
@@ -17,6 +18,12 @@ cd regal-vagrant-centos7
 ## Start
 
 `vagrant up`
+
+### First Time
+
+```
+vagrant plugin install vagrant-vbguest && vagrant reload
+```
 
 Running the first time this will download a lot of things and can last up to one hour.
 
@@ -34,6 +41,10 @@ Running the first time this will download a lot of things and can last up to one
 
 # Inside the box
 
+You can use `vagrant ssh` to login to the box
+
+You will find:
+
 ```
 /opt/regal/src
 /opt/regal/apps
@@ -42,3 +53,18 @@ Running the first time this will download a lot of things and can last up to one
 /opt/regal/tmp
 /opt/regal/conf
  ```
+
+# Development
+
+By default vagrant will share the `/opt/regal/src` directory at the guest system to `~/regal-dev`. the content is
+
+```
+etikett
+regal-api
+regal-install
+skos-lookup
+thumby
+zettel
+```
+
+You can import all of these projects into your eclipse IDE. All projects are version controlled by git.
