@@ -99,7 +99,6 @@ function installPlay(){
 function postProcess(){
     ln -s  $ARCHIVE_HOME/activator-dist-1.3.5  $ARCHIVE_HOME/activator
     mv  $ARCHIVE_HOME/proai/  $ARCHIVE_HOME/apps
-    mv  $ARCHIVE_HOME/fedora/  $ARCHIVE_HOME/apps
     sudo chown -R vagrant $ARCHIVE_HOME
 }
 
