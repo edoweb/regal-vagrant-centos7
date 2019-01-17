@@ -120,7 +120,7 @@ function installRegalModules(){
     installRegalModule thumby-0.1.0-SNAPSHOT thumby
 
     cd  $ARCHIVE_HOME/src/skos-lookup
-    installRegalModule skos-lookup-0.1.0-SNAPSHOT skos-lookup
+    installRegalModule skos-lookup-1.0-SNAPSHOT skos-lookup
 
     cd  $ARCHIVE_HOME/src/etikett
     installRegalModule etikett-0.1.0-SNAPSHOT etikett
