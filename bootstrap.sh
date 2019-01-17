@@ -26,11 +26,11 @@ function downloadPackages(){
 	    wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm 
 	fi
 
-	if [ -f elasticsearch-1.1.1.noarch.rpm ]
+	if [ -f elasticsearch-1.1.0.noarch.rpm ]
 	then
 	    echo "Elasticsearch is already here! Stop downloading!"
 	else
-	    wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.1.noarch.rpm
+	    wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.0.noarch.rpm
 	fi
 }
 
@@ -71,6 +71,7 @@ function createRegalFolderLayout(){
 function downloadRegalSources(){
     cd /opt/regal/src
     git clone https://github.com/edoweb/regal-api 
+    cp regal-api/conf/application.conf.tmpl regal-api/conf/application.conf
     git clone https://github.com/edoweb/regal-install
     git clone https://github.com/hbz/thumby
     git clone https://github.com/hbz/etikett
@@ -80,7 +81,7 @@ function downloadRegalSources(){
 
 function installFedora(){
     /vagrant/configure.sh
-    export FEDORA_HOME=$ARCHIVE_HOME/apps/fedora
+    export FEDORA_HOME=$ARCHIVE_HOME/fedora
     java -jar /vagrant/fcrepo-installer-3.7.1.jar  $ARCHIVE_HOME/conf/install.properties
 }
 
@@ -98,6 +99,7 @@ function installPlay(){
 function postProcess(){
     ln -s  $ARCHIVE_HOME/activator-dist-1.3.5  $ARCHIVE_HOME/activator
     mv  $ARCHIVE_HOME/proai/  $ARCHIVE_HOME/apps
+    mv  $ARCHIVE_HOME/fedora/  $ARCHIVE_HOME/apps
     sudo chown -R vagrant $ARCHIVE_HOME
 }
 
