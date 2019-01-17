@@ -105,7 +105,7 @@ function installRegalModule(){
     VERSION=$1
     APPNAME=$2
     $ARCHIVE_HOME/activator/activator clean
-    $ARCHIVE_HOME/activator/activator dist
+    yes r|$ARCHIVE_HOME/activator/activator dist
     $ARCHIVE_HOME/activator/activator eclipse
     cp target/universal/$VERSION.zip  /tmp
     cd /tmp
