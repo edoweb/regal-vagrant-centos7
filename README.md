@@ -16,13 +16,22 @@ git clone https://github.com/edoweb/regal-vagrant-centos7
 cd regal-vagrant-centos7
 ```
 
+It is recommended to download some third party packages in advance
+
+```
+wget http://downloads.typesafe.com/typesafe-activator/1.3.5/typesafe-activator-1.3.5.zip
+wget http://sourceforge.net/projects/fedora-commons/files/fedora/3.7.1/fcrepo-installer-3.7.1.jar
+wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
+wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.0.noarch.rpm
+```
+
 ## Start
 
 `vagrant up`
 
 Running the first time this will download a lot of things and can last up to one hour.
 
-Enter the box
+### Enter the box
 
 `vagrant ssh`
 
@@ -31,10 +40,16 @@ and start all Regal applications with
 ```
 /vagrant/start-regal.sh
 ```
-
 ### First Time
 
-To use the folder sync install vbguest additions:
+1. As soon as all services are up and runnig. Configure the rdf handling of regal-api by executing the following two commands:
+
+```
+curl -uadmin:admin -XPOST -F"data=@/opt/regal/src/regal-api/conf/labels.json" -F"format-cb=Json" localhost:9002/tools/etikett -i -L
+curl -uedoweb-admin:admin -XPOST localhost:9100/context.json
+```
+
+2. To use the folder sync install vbguest additions from the host by
 
 ```
 vagrant plugin install vagrant-vbguest && vagrant reload
