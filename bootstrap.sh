@@ -2,6 +2,38 @@
 
 source /vagrant/variables.conf
 
+function downloadPackages(){
+	cd /vagrant
+
+	if [ -f typesafe-activator-1.3.5.zip ]
+	then
+	    echo "Activator is already here! Stop downloading!"
+	else
+	    wget http://downloads.typesafe.com/typesafe-activator/1.3.5/typesafe-activator-1.3.5.zip
+	fi
+
+	if [ -f fcrepo-installer-3.7.1.jar ]
+	then
+	    echo "fcrepo is already here! Stop downloading!"
+	else
+	    wget http://sourceforge.net/projects/fedora-commons/files/fedora/3.7.1/fcrepo-installer-3.7.1.jar 
+	fi
+
+	if [ -f mysql-community-release-el7-5.noarch.rpm ]
+	then
+	    echo "Mysql is already here! Stop downloading!"
+	else
+	    wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm 
+	fi
+
+	if [ -f elasticsearch-1.1.1.noarch.rpm ]
+	then
+	    echo "Elasticsearch is already here! Stop downloading!"
+	else
+	    wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.1.noarch.rpm
+	fi
+}
+
 function installPackages(){
     sudo yum -y update
     sudo yum -y install httpd
@@ -13,14 +45,14 @@ function installPackages(){
     sudo yum -y install emacs
     sudo yum -y install unzip
     
-    wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
-    yes|sudo rpm -ivh mysql-community-release-el7-5.noarch.rpm
+    
+    yes|sudo rpm -ivh /vagrant/mysql-community-release-el7-5.noarch.rpm
     yum update -y
     sudo yum -y install mysql-server
     sudo systemctl start mysqld
 
-    wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.1.noarch.rpm
-    sudo rpm -i elasticsearch-1.1.1.noarch.rpm
+    
+    sudo rpm -i /vagrant/elasticsearch-1.1.1.noarch.rpm
     cd /usr/share/elasticsearch/
     sudo bin/plugin -install mobz/elasticsearch-head
     sudo bin/plugin install elasticsearch/elasticsearch-analysis-icu/2.1.0
@@ -47,22 +79,25 @@ function downloadRegalSources(){
 }
 
 function installFedora(){
-    cd $ARCHIVE_HOME/src/regal-install
-    cp /vagrant/variables.conf .
-    ./configure.sh
-    ./install-fedora.sh
+    /vagrant/configure.sh
+    export FEDORA_HOME=$ARCHIVE_HOME/apps/fedora
+    java -jar /vagrant/fcrepo-installer-3.7.1.jar  $ARCHIVE_HOME/conf/install.properties
 }
 
 function installPlay(){
     cd $ARCHIVE_HOME/src/regal-install
-    ./install-play.sh
+  
+    if [ -d $ARCHIVE_HOME/activator-1.3.5 ]
+    then
+	echo "Activator already installed!"
+    else
+	unzip /vagrant/typesafe-activator-1.3.5.zip -d $ARCHIVE_HOME 
+    fi
 }
 
 function postProcess(){
     ln -s  $ARCHIVE_HOME/activator-dist-1.3.5  $ARCHIVE_HOME/activator
-    mv  $ARCHIVE_HOME/fedora  $ARCHIVE_HOME/apps
     mv  $ARCHIVE_HOME/proai/  $ARCHIVE_HOME/apps
-    rm -rf  $ARCHIVE_HOME/sync
     sudo chown -R vagrant $ARCHIVE_HOME
 }
 
@@ -97,19 +132,9 @@ function installRegalModules(){
 
 function configureRegalModules(){
     mysql -u root -Bse "CREATE DATABASE etikett  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;CREATE USER 'etikett'@'localhost' IDENTIFIED BY 'etikett';GRANT ALL ON etikett.* TO 'etikett'@'localhost';"
-    sudo chown -R vagrant $ARCHIVE_HOME
 }
 
-function startRegalModules(){
-    $ARCHIVE_HOME/apps/fedora/tomcat/bin/startup.sh
-    nohup $ARCHIVE_HOME/apps/thumby/bin/thumby -Dconfig.file=$ARCHIVE_HOME/apps/thumby/conf/application.conf -Dapplication.secret=`uuidgen` -Dhttp.port=9001 &
-    nohup $ARCHIVE_HOME/apps/etikett/bin/etikett -Dconfig.file=$ARCHIVE_HOME/apps/etikett/conf/application.conf -Dapplication.secret=`uuidgen` -Dhttp.port=9002 &
-    nohup $ARCHIVE_HOME/apps/skos-lookup/bin/skos-lookup -Dconfig.file=$ARCHIVE_HOME/apps/skos-lookup/conf/application.conf -Dapplication.secret=`uuidgen` -Dhttp.port=9004 &
-    nohup $ARCHIVE_HOME/apps/zettel/bin/zettel -Dconfig.file=$ARCHIVE_HOME/apps/zettel/conf/application.conf -Dapplication.secret=`uuidgen` -Dhttp.port=9003 &
-    nohup $ARCHIVE_HOME/apps/regal-api/bin/regal-api -Dconfig.file=$ARCHIVE_HOME/apps/regal-api/conf/application.conf -Dapplication.secret=`uuidgen` -Dhttp.port=9100 &
-}
-
-
+downloadPackages
 installPackages
 createRegalFolderLayout
 downloadRegalSources
@@ -118,4 +143,4 @@ installPlay
 postProcess
 installRegalModules
 configureRegalModules
-startRegalModules
+sudo chown -R vagrant $ARCHIVE_HOME
