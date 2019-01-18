@@ -14,6 +14,7 @@ Newest version of vagrant installed. Newest version of virtualbox installed.
 mkdir ~/regal-dev
 git clone https://github.com/edoweb/regal-vagrant-centos7
 cd regal-vagrant-centos7
+vagrant plugin install vagrant-vbguest && vagrant reload
 ```
 
 It is recommended to download some third party packages in advance
@@ -45,14 +46,9 @@ and start all Regal applications with
 1. As soon as all services are up and runnig. Configure the rdf handling of regal-api by executing the following two commands:
 
 ```
+vagrant ssh
 curl -uadmin:admin -XPOST -F"data=@/opt/regal/src/regal-api/conf/labels.json" -F"format-cb=Json" localhost:9002/tools/etikett -i -L
 curl -uedoweb-admin:admin -XPOST localhost:9100/context.json
-```
-
-2. To use the folder sync install vbguest additions from the host by
-
-```
-vagrant plugin install vagrant-vbguest && vagrant reload
 ```
 
 ## Stop
