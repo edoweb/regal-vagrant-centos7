@@ -52,7 +52,7 @@ function installPackages(){
     sudo systemctl start mysqld
 
     
-    sudo rpm -i /vagrant/elasticsearch-1.1.1.noarch.rpm
+    sudo rpm -i /vagrant/elasticsearch-1.1.0.noarch.rpm
     cd /usr/share/elasticsearch/
     sudo bin/plugin -install mobz/elasticsearch-head
     sudo bin/plugin install elasticsearch/elasticsearch-analysis-icu/2.1.0
