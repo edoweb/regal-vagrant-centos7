@@ -34,7 +34,7 @@ cd regal-vagrant-centos7
 vagrant plugin install vagrant-vbguest && vagrant reload
 ```
 
-It is recommended to download some third party packages before proceeding with `vagrant up`
+It is recommended to download some third party packages into the vagrant directory before proceeding with `vagrant up`
 ```
 wget http://downloads.typesafe.com/typesafe-activator/1.3.5/typesafe-activator-1.3.5.zip
 wget http://sourceforge.net/projects/fedora-commons/files/fedora/3.7.1/fcrepo-installer-3.7.1.jar
@@ -46,7 +46,7 @@ wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.0
 
 `vagrant up`
 
-Running the first time this will download a lot of things and can last up to one hour.
+Running the first time this will download a lot of things and can last up to one hour. 
 
 ### Enter the box
 
@@ -215,5 +215,13 @@ Standard address for regal-api is `http://api.localhost`.
 </VirtualHost>
 ```
 
+# Troubleshooting
 
+If something went wrong during `vagrant up` ,please do the following:
 
+```
+cd regal-vagrant-centos7
+vagrant destroy
+vagrant up 2>&1 | tee regal-vagrant-centos7-install.log
+```
+Now you can [open an issue](https://github.com/edoweb/regal-vagrant-centos7/issues/new) an attach the install.log to it or just paste relevant parts into it.
