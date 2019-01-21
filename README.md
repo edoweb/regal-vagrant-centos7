@@ -23,8 +23,7 @@ cd regal-vagrant-centos7
 vagrant plugin install vagrant-vbguest && vagrant reload
 ```
 
-It is recommended to download some third party packages in advance
-
+It is recommended to download some third party packages before starting
 ```
 wget http://downloads.typesafe.com/typesafe-activator/1.3.5/typesafe-activator-1.3.5.zip
 wget http://sourceforge.net/projects/fedora-commons/files/fedora/3.7.1/fcrepo-installer-3.7.1.jar
