@@ -5,10 +5,16 @@ The virtualbox will autmoatically provide the source code of all running regal c
 
 # Prerequisites
 
-Newest version [of vagrant](https://www.vagrantup.com/downloads.html) installed. Newest version of virtualbox installed.
+Newest version [of vagrant](https://www.vagrantup.com/downloads.html) installed. Current version of virtualbox installed.
 
 e.g.
+
 ```
+sudo apt-get install virtualbox
+```
+e.g.
+```
+cd /tmp
 wget https://releases.hashicorp.com/vagrant/2.2.3/vagrant_2.2.3_x86_64.deb
 sudo dpkg -i vagrant_2.2.3_x86_64.deb
 ```
