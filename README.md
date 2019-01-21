@@ -9,7 +9,7 @@ Newest version [of vagrant](https://www.vagrantup.com/downloads.html) installed.
 e.g.
 ```
 wget https://releases.hashicorp.com/vagrant/2.2.3/vagrant_2.2.3_x86_64.deb
-sudo dpkg -i sudo dpkg -i 
+sudo dpkg -i vagrant_2.2.3_x86_64.deb
 ```
 
 # How to
