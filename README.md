@@ -4,7 +4,7 @@ This repository provides a working vagrant config to create a centos7 virtualbox
 
 # Prerequisites
 
-Newest version of vagrant installed. Newest version of virtualbox installed.
+Newest version [of vagrant](https://www.vagrantup.com/downloads.html) installed. Newest version of virtualbox installed.
 
 # How to
 
