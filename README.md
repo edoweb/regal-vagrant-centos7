@@ -14,16 +14,20 @@ sudo dpkg -i vagrant_2.2.3_x86_64.deb
 
 # How to
 
-## Install
+## Instal
 
+First create a directory for your vagrant guest to share some folders. The standard path for the shared folder is defined in the `Vagrantfile` by ` config.vm.synced_folder "~/regal-dev", "/opt/regal/src",type: "virtualbox"`. So please make sure that the path `~/regal-dev` exists.
 ```
 mkdir ~/regal-dev
+```
+Now, check out this repo at any location. And install the vagrant `vbguest` additions.
+```
 git clone https://github.com/edoweb/regal-vagrant-centos7
 cd regal-vagrant-centos7
 vagrant plugin install vagrant-vbguest && vagrant reload
 ```
 
-It is recommended to download some third party packages before starting
+It is recommended to download some third party packages before proceeding with `vagrant up`
 ```
 wget http://downloads.typesafe.com/typesafe-activator/1.3.5/typesafe-activator-1.3.5.zip
 wget http://sourceforge.net/projects/fedora-commons/files/fedora/3.7.1/fcrepo-installer-3.7.1.jar
