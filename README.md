@@ -15,7 +15,7 @@ sudo dpkg -i vagrant_2.2.3_x86_64.deb
 
 # How to
 
-## Instal
+## Install
 
 First create a directory for your vagrant guest to share some folders. The standard path for the shared folder is defined in the `Vagrantfile` by ` config.vm.synced_folder "~/regal-dev", "/opt/regal/src",type: "virtualbox"`. So please make sure that the path `~/regal-dev` exists.
 ```
