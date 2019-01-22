@@ -4,13 +4,16 @@ This repository provides a working vagrant config to create a centos7 virtualbox
 The virtualbox will autmoatically provide the source code of all running regal components in a shared folder together with eclipse project files. You can import those projects directly to your eclipse IDE on your host system. 
 
 **Settings**
+
 hdd 40GB
+
 cpu 2core
+
 ram 2048G
 
 # Prerequisites
 
-Newest version [of vagrant](https://www.vagrantup.com/downloads.html) installed. Current version of virtualbox installed.
+Newest (>=2.2.3) version [of vagrant](https://www.vagrantup.com/downloads.html) installed. Current version of virtualbox installed.
 
 e.g.
 
