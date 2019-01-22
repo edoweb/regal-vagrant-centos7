@@ -63,23 +63,27 @@ and start all Regal applications with
 
 ```
 vagrant ssh
-curl -uadmin:admin -XPOST -F"data=@/opt/regal/src/regal-api/conf/labels.json" -F"format-cb=Json" localhost:9002/tools/etikett -i -L
-curl -uedoweb-admin:admin -XPOST localhost:9100/context.json
+curl -uadmin:admin -XPOST -F"data=@/opt/regal/src/regal-api/conf/labels.json" -F"format-cb=Json" http://api.localhost/tools/etikett -i -L
+curl -uedoweb-admin:admin -XPOST http://api.localhost/ontext.json
 ```
 2. Insert a first object
 
 ```
-curl -i -uedoweb-admin:admin -XPUT localhost:9100/resource/danrw:1234 -d'{"type":"monograph","accessScheme":"public"}' -H'content-type:application/json'
+curl -i -uedoweb-admin:admin -XPUT http://api.localhost/resource/danrw:1234 -d'{"type":"monograph","accessScheme":"public"}' -H'content-type:application/json'
 ```
-Upload a test file
+Create child object
+```
+curl -i -uedoweb-admin:admin -XPUT http://api.localhost/resource/danrw:1235 -d'{"parentPid":"danrw:1234","type":"file","accessScheme":"public"}' -H'content-type:application/json'
+```
+Add date to file object
 
 ```
-curl -uedoweb-admin:admin -F"data=@/opt/regal/src/regal-api/test/resources/test.pdf;type=application/pdf" -XPUT localhost:9100/resource/danrw:1234/data
+curl -uedoweb-admin:admin -F"data=@/opt/regal/src/regal-api/test/resources/test.pdf;type=application/pdf" -XPUT http://api.localhost/resource/danrw:1235/data
 ```
-Add Metadata
+Add Metadata to parent object
 
 ```
- curl -uedoweb-admin:admin -XPOST "localhost:9100/utils/lobidify/danrw:1234?alephid=HT018920238"
+ curl -uedoweb-admin:admin -XPOST "http://api.localhost/utils/lobidify/danrw:1234?alephid=HT018920238"
 ```
 
 ## Stop
