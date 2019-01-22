@@ -66,6 +66,21 @@ vagrant ssh
 curl -uadmin:admin -XPOST -F"data=@/opt/regal/src/regal-api/conf/labels.json" -F"format-cb=Json" localhost:9002/tools/etikett -i -L
 curl -uedoweb-admin:admin -XPOST localhost:9100/context.json
 ```
+2. Insert a first object
+
+```
+curl -i -uedoweb-admin:admin -XPUT localhost:9100/resource/danrw:1234 -d'{"type":"monograph","accessScheme":"public"}' -H'content-type:application/json'
+```
+Upload a test file
+
+```
+curl -uedoweb-admin:admin -F"data=@/opt/regal/src/regal-api/test/resources/test.pdf;type=application/pdf" -XPUT localhost:9100/resource/danrw:1234/data
+```
+Add Metadata
+
+```
+ curl -uedoweb-admin:admin -XPOST "localhost:9100/utils/lobidify/danrw:1234?alephid=HT018920238"
+```
 
 ## Stop
 
