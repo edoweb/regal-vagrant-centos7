@@ -57,7 +57,7 @@ function installPackages(){
     sudo bin/plugin -install mobz/elasticsearch-head
     sudo bin/plugin install elasticsearch/elasticsearch-analysis-icu/2.1.0
     sudo bin/plugin -install com.yakaz.elasticsearch.plugins/elasticsearch-analysis-combo/1.5.1
-    sudo echo "cluster.name:danrw-dev" > /etc/elasticsearch/elasticsearch.yml
+    sudo echo "cluster.name: danrw-dev" > /etc/elasticsearch/elasticsearch.yml
 }
 
 function createRegalFolderLayout(){
