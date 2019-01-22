@@ -15,9 +15,12 @@ rm $ARCHIVE_HOME/apps/etikett/RUNNING_PID
 rm $ARCHIVE_HOME/apps/thumby/RUNNING_PID
 sudo /bin/systemctl stop elasticsearch.service
 $ARCHIVE_HOME/fedora/tomcat/bin/shutdown.sh
+sudo service httpd stop
 }
 
 function startRegalModules(){
+/usr/sbin/setsebool -P httpd_can_network_connect 1
+sudo service httpd start
 $ARCHIVE_HOME/fedora/tomcat/bin/startup.sh
 sudo /bin/systemctl start elasticsearch.service
     nohup $ARCHIVE_HOME/apps/thumby/bin/thumby -Dconfig.file=$ARCHIVE_HOME/apps/thumby/conf/application.conf -Dapplication.secret=`uuidgen` -Dhttp.port=9001 &
