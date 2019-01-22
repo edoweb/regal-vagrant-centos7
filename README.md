@@ -2,6 +2,10 @@
 
 This repository provides a working vagrant config to create a centos7 virtualbox with a running regal backend installed. If fully installed, all regal endpoints can be made available under `https://api.localhost` on your host machine. 
 The virtualbox will autmoatically provide the source code of all running regal components in a shared folder together with eclipse project files. You can import those projects directly to your eclipse IDE on your host system. 
+**Settings**
+hdd 40GB
+cpu 2core
+ram 2048G
 
 # Prerequisites
 
