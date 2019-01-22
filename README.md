@@ -75,7 +75,7 @@ Create child object
 ```
 curl -i -uedoweb-admin:admin -XPUT http://api.localhost/resource/danrw:1235 -d'{"parentPid":"danrw:1234","type":"file","accessScheme":"public"}' -H'content-type:application/json'
 ```
-Add date to file object
+Add data to file object
 
 ```
 curl -uedoweb-admin:admin -F"data=@/opt/regal/src/regal-api/test/resources/test.pdf;type=application/pdf" -XPUT http://api.localhost/resource/danrw:1235/data
