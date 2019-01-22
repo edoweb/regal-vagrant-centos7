@@ -83,6 +83,8 @@ function installFedora(){
     /vagrant/configure.sh
     export FEDORA_HOME=$ARCHIVE_HOME/fedora
     java -jar /vagrant/fcrepo-installer-3.7.1.jar  $ARCHIVE_HOME/conf/install.properties
+    cp $ARCHIVE_HOME/conf/fedora-users.xml $ARCHIVE_HOME/fedora/server/config/
+    cp $ARCHIVE_HOME/conf/setenv.sh $ARCHIVE_HOME/fedora/tomcat/bin
 }
 
 function installPlay(){
