@@ -138,6 +138,14 @@ function configureRegalModules(){
     mysql -u root -Bse "CREATE DATABASE etikett  DEFAULT CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;CREATE USER 'etikett'@'localhost' IDENTIFIED BY 'etikett';GRANT ALL ON etikett.* TO 'etikett'@'localhost';"
 }
 
+function configureApache(){
+    /usr/sbin/setsebool -P httpd_can_network_connect 1
+    sed -i "1 s|$| api.localhost|" /etc/hosts
+    mkdir /etc/httpd/sites-enabled
+    echo "IncludeOptional sites-enabled/*.conf" >> /etc/httpd/conf/httpd.conf
+    ln -s /vagrant/regal.vagrant.conf /etc/httpd/sites-enabled/
+}
+
 downloadPackages
 installPackages
 createRegalFolderLayout
@@ -147,4 +155,5 @@ installPlay
 postProcess
 installRegalModules
 configureRegalModules
+configureApache
 sudo chown -R vagrant $ARCHIVE_HOME
