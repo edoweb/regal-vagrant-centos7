@@ -1,7 +1,7 @@
 # About
 
 This repository provides a working vagrant config to create a centos7 virtualbox with a running regal backend installed. If fully installed, all regal endpoints can be made available under `https://api.localhost` on your host machine. 
-The virtualbox will autmoatically provide the source code of all running regal components in a shared folder together with eclipse project files. You can import those projects directly to your eclipse IDE on your host system. 
+The virtualbox will automatically provide the source code of all running regal components in a shared folder together with eclipse project files. You can import those projects directly to your eclipse IDE on your host system. 
 
 **Settings**
 
@@ -15,12 +15,12 @@ ram 2048G
 
 Newest (>=2.2.3) version [of vagrant](https://www.vagrantup.com/downloads.html) installed. Current version of virtualbox installed.
 
-e.g.
+e.g. on Ubuntu
 
 ```
 sudo apt-get install virtualbox
 ```
-e.g.
+e.g. on Ubuntu
 ```
 cd /tmp
 wget https://releases.hashicorp.com/vagrant/2.2.3/vagrant_2.2.3_x86_64.deb
@@ -54,7 +54,7 @@ wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.0
 
 `vagrant up`
 
-Running the first time this will download a lot of things and can last up to one hour. 
+Running the first time this will download a lot of things and can last up to one hour. Please shut down all services on your host system at ports `9200`, `9100`, `8080`, `9001`, `9002`, `9003`, `9004` or modify the `Vagrantfile` as you need.
 
 ### Enter the box
 
