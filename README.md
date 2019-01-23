@@ -31,11 +31,8 @@ sudo dpkg -i vagrant_2.2.3_x86_64.deb
 
 ## Install
 
-First create a directory for your vagrant guest to share some folders. The standard path for the shared folder is defined in the [`Vagrantfile`](https://github.com/edoweb/regal-vagrant-centos7/blob/master/Vagrantfile) by ` config.vm.synced_folder "~/regal-dev", "/opt/regal/src",type: "virtualbox"`. So please make sure that the path `~/regal-dev` exists.
-```
-mkdir ~/regal-dev
-```
-Now, check out this repo at any location. 
+Check out this repo at any location. 
+
 ```
 git clone https://github.com/edoweb/regal-vagrant-centos7
 cd regal-vagrant-centos7
@@ -47,6 +44,12 @@ wget http://downloads.typesafe.com/typesafe-activator/1.3.5/typesafe-activator-1
 wget http://sourceforge.net/projects/fedora-commons/files/fedora/3.7.1/fcrepo-installer-3.7.1.jar
 wget http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm
 wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.0.noarch.rpm
+```
+
+Now, create a directory for your vagrant guest to share some folders. The standard path for the shared folder is defined in the [`Vagrantfile`](https://github.com/edoweb/regal-vagrant-centos7/blob/master/Vagrantfile) by ` config.vm.synced_folder "~/regal-dev", "/opt/regal/src",type: "virtualbox"`. So please make sure that the path `~/regal-dev` exists.
+
+```
+mkdir ~/regal-dev
 ```
 
 ## Start
