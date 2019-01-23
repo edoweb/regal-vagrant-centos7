@@ -39,7 +39,6 @@ Now, check out this repo at any location. And install the vagrant `vbguest` addi
 ```
 git clone https://github.com/edoweb/regal-vagrant-centos7
 cd regal-vagrant-centos7
-vagrant plugin install vagrant-vbguest && vagrant reload
 ```
 
 It is recommended to download some third party packages into the vagrant directory before proceeding with `vagrant up`
@@ -55,6 +54,12 @@ wget https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-1.1.0
 `vagrant up`
 
 Running the first time this will download a lot of things and can last up to one hour. Please shut down all services on your host system at ports `9200`, `9100`, `8080`, `9001`, `9002`, `9003`, `9004` or modify the `Vagrantfile` as you need.
+
+Install guest additions
+
+```
+vagrant plugin install vagrant-vbguest && vagrant reload
+```
 
 ### Enter the box
 
