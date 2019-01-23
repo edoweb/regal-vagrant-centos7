@@ -80,7 +80,7 @@ and start all Regal applications with
 ```
 vagrant ssh
 curl -uadmin:admin -XPOST -F"data=@/opt/regal/src/regal-api/conf/labels.json" -F"format-cb=Json" http://api.localhost/tools/etikett -i -L
-curl -uedoweb-admin:admin -XPOST http://api.localhost/ontext.json
+curl -uedoweb-admin:admin -XPOST http://api.localhost/context.json
 ```
 2. Insert a first object
 
