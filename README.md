@@ -35,7 +35,7 @@ First create a directory for your vagrant guest to share some folders. The stand
 ```
 mkdir ~/regal-dev
 ```
-Now, check out this repo at any location. And install the vagrant `vbguest` additions.
+Now, check out this repo at any location. 
 ```
 git clone https://github.com/edoweb/regal-vagrant-centos7
 cd regal-vagrant-centos7
