@@ -102,6 +102,24 @@ Add Metadata to parent object
  curl -uedoweb-admin:admin -XPOST "http://api.localhost/utils/lobidify/danrw:1234?alephid=HT018920238"
 ```
 
+## Everything up and running!
+
+Congratulations. At this point you should find a first object in your regal installation. Some Links:
+
+```
+http://localhost:9100/resource/danrw:1234
+http://localhost:8080/fedora/objects/danrw:1234
+http://localhost:9200/danrw2/_all/danrw:1234
+```
+
+If you follow the instructions under [Apache config](https://github.com/edoweb/regal-vagrant-centos7#apache-config) you can access this links from your host by
+
+```
+http://api.localhost/resource/danrw:1234
+http://api.localhost//fedora/objects/danrw:1234
+http://api.localhost/search/danrw2/_all/danrw:1234
+```
+
 ## Stop
 
 ``vagrant halt``
