@@ -85,11 +85,11 @@ curl -uedoweb-admin:admin -XPOST http://api.localhost/context.json
 2. Insert a first object
 
 ```
-curl -i -uedoweb-admin:admin -XPUT http://api.localhost/resource/danrw:1234 -d'{"type":"monograph","accessScheme":"public"}' -H'content-type:application/json'
+curl -i -uedoweb-admin:admin -XPUT http://api.localhost/resource/danrw:1234 -d'{"contentType":"monograph","accessScheme":"public"}' -H'content-type:application/json'
 ```
 Create child object
 ```
-curl -i -uedoweb-admin:admin -XPUT http://api.localhost/resource/danrw:1235 -d'{"parentPid":"danrw:1234","type":"file","accessScheme":"public"}' -H'content-type:application/json'
+curl -i -uedoweb-admin:admin -XPUT http://api.localhost/resource/danrw:1235 -d'{"parentPid":"danrw:1234","contentType":"file","accessScheme":"public"}' -H'content-type:application/json'
 ```
 Add data to file object
 
