@@ -69,9 +69,9 @@ function createRegalFolderLayout(){
 }
 
 function downloadRegalSources(){
-    cd /opt/regal/src
+    cd $ARCHIVE_HOME/src
     git clone https://github.com/edoweb/regal-api 
-    cp regal-api/conf/application.conf.tmpl regal-api/conf/application.conf
+    cp /vagrant/application.conf $ARCHIVE_HOME/src/regal-api/conf/application.conf
     git clone https://github.com/edoweb/regal-install
     git clone https://github.com/hbz/thumby
     git clone https://github.com/hbz/etikett
@@ -143,7 +143,7 @@ function configureApache(){
     sed -i "1 s|$| api.localhost|" /etc/hosts
     mkdir /etc/httpd/sites-enabled
     echo "IncludeOptional sites-enabled/*.conf" >> /etc/httpd/conf/httpd.conf
-    ln -s /vagrant/regal.vagrant.conf /etc/httpd/sites-enabled/
+    cp /vagrant/regal.vagrant.conf /etc/httpd/sites-enabled/
 }
 
 downloadPackages
