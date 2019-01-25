@@ -78,7 +78,7 @@ and start all Regal applications with
 1. As soon as all services are up and runnig. Configure the rdf handling of regal-api by executing the following two commands:
 
 ```
-vagrant ssh
+# Wait a few seconds until the service is up and running
 curl -uadmin:admin -XPOST -F"data=@/opt/regal/src/regal-api/conf/labels.json" -F"format-cb=Json" http://api.localhost/tools/etikett -i -L
 curl -uedoweb-admin:admin -XPOST http://api.localhost/context.json
 ```
