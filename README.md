@@ -186,7 +186,12 @@ For development it is recommended to provide a proper apache config on your host
 127.0.0.1	localhost api.localhost
 
 ``` 
+On Ubuntu you can simply add the config from the repository to your `/etc/apache2/sites-enabled` directory and restart the apache2 service.
 
+```
+sudo ln -s regal.vagrant.conf /etc/apache2/sites-enabled
+sudo service apache2 restart
+```
 I use the following entries to provide all regal functionalities via my apache2 webserver at the host. 
 
 Standard address for regal-api is `http://api.localhost`.
