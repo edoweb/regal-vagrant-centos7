@@ -107,9 +107,9 @@ Add Metadata to parent object
 
 Congratulations. At this point you should find a first object in your regal installation. Some Links:
 
+**Login:** edoweb-admin
 
-Login: edoweb-admin
-Password: admin
+**Password:** admin
 
 ```
 http://localhost:9100/resource/danrw:1234
