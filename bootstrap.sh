@@ -237,7 +237,7 @@ function installDrush(){
 }
 
 function installDrupal(){
-	mysql -u root drupal < /vagrant/drupal-db.sql
+	mysql -u root < /vagrant/drupal-db.sql
 
 	mysql -u root -Bse "CREATE USER drupal IDENTIFIED BY 'admin';GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES, CREATE TEMPORARY TABLES ON drupal.* TO 'drupal'@'localhost' IDENTIFIED BY 'admin';"
 	
@@ -246,8 +246,7 @@ function installDrupal(){
 	tar -xzf $BIN/drupal-7.36.tar.gz
 	ln -s drupal-7.36 $ARCHIVE_HOME/drupal
 	chmod a+w $ARCHIVE_HOME/drupal/sites/default
-	cp $ARCHIVE_HOME/drupal/sites/default/default.settings.php  $ARCHIVE_HOME/drupal/sites/default/settings.php
-	chmod o+w $ARCHIVE_HOME/drupal/sites/default/settings.php
+	cp /vagrant/settings.php  $ARCHIVE_HOME/drupal/sites/default/settings.php
 	mkdir $ARCHIVE_HOME/drupal/sites/default/files	
         chmod o+w $ARCHIVE_HOME/drupal/sites/default/files
 	chcon -R -t httpd_sys_content_rw_t $ARCHIVE_HOME/drupal/sites/default/files/
@@ -294,7 +293,7 @@ function createStartStopScripts(){
 	#sudo service tomcat-for-openwayback start;
 	#sudo service tomcat-for-deepzoom start;
 	#sudo service regal-api start;
-	
+	echo "Startscripts are not available for centos!"
 }
 
 function defineBootShutdownSequence(){
